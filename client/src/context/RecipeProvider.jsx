@@ -23,11 +23,11 @@ export default function RecipeProvider(props) {
 
   const [recipeState, setRecipeState] = useState(initState);
 
-  const initPublic = {
-    publicRecipes: [],
-  };
+  // const initPublic = {
+  //   publicRecipes: [],
+  // };
 
-  const [publicRecipes, setPublicRecipes] = useState(initPublic);
+  // const [publicRecipes, setPublicRecipes] = useState(initPublic);
 
   // Adjusted addRecipe function within RecipeProvider.jsx
   function addRecipe(newRecipe) {
@@ -59,18 +59,18 @@ export default function RecipeProvider(props) {
       console.log(err);
     }
   };
-  // Get public recipes
-  const getPublicRecipes = async () => {
-    try {
-      const response = await userAxios.get("/api/recipe/");
-      setPublicRecipes((prevState) => ({
-        ...prevState,
-        publicRecipes: response.data,
-      }));
-    } catch (err) {
-      console.log(err.response.errMsg);
-    }
-  };
+  // // Get public recipes
+  // const getPublicRecipes = async () => {
+  //   try {
+  //     const response = await userAxios.get("/api/recipe/");
+  //     setPublicRecipes((prevState) => ({
+  //       ...prevState,
+  //       publicRecipes: response.data,
+  //     }));
+  //   } catch (err) {
+  //     console.log(err.response.errMsg);
+  //   }
+  // };
 
   // Delete user recipe
   function deleteRecipe(recipeId) {
@@ -154,26 +154,26 @@ export default function RecipeProvider(props) {
         }));
 
         // fetch updated public recipes and update the state
-        getPublicRecipes();
+        // getPublicRecipes();
       })
       .catch((err) => console.log(err));
   }
 
   // Call getUserRecipes and getPublicRecipes on mount
-  useEffect(() => {
-    getPublicRecipes();
-  }, []);
+  // useEffect(() => {
+  //   getPublicRecipes();
+  // }, []);
 
   return (
     <RecipesContext.Provider
       value={{
         ...recipeState,
-        ...publicRecipes,
+        
         addRecipe,
         deleteRecipe,
         editRecipe,
         getUserRecipes,
-        getPublicRecipes,
+       
         likeRecipe,
         dislikeRecipe,
       }}

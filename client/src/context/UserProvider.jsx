@@ -7,9 +7,7 @@ import axios from "axios";
 
 export const UserContext = React.createContext();
 
-export const User = ({ user, children }) => {
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
-};
+
 
 const userAxios = axios.create();
 
@@ -19,14 +17,15 @@ userAxios.interceptors.request.use((config) => {
   return config;
 });
 
-export default function UserProvider(props) {
-  const { getpublicRecipes } = useContext(RecipesContext);
+export default function UserProvider({ children }){
+  // const { getpublicRecipes } = useContext(RecipesContext);
 
   const initState = {
     user: JSON.parse(localStorage.getItem("user")) || {},
     token: localStorage.getItem("token") || "",
     recipes: [],
     errMsg: "",
+
   };
 
   const [userState, setUserState] = useState(initState);
@@ -46,6 +45,7 @@ export default function UserProvider(props) {
           }));
         }
       })
+      
       .catch((err) => handleAuthErr(err.response.data.errMsg));
   }
 
@@ -59,14 +59,14 @@ export default function UserProvider(props) {
         const { user, token } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
-        getpublicRecipes();
+        // getpublicRecipes();
         setUserState((prevUserState) => ({
           ...prevUserState,
           user,
           token,
         }));
       })
-      .catch((err) => handleAuthErr(err.response.data.errMsg));
+      .catch((err) => console.log(err));
   }
 
   // Logout user
@@ -109,5 +109,9 @@ export default function UserProvider(props) {
         }));
       })
       .catch((err) => console.log(err));
+    
   }
+  return <UserContext.Provider value={{ ...userState, signup, login, logout, resetAuthErr, updateUser  }}>{children}</UserContext.Provider>;
+
+
 }
