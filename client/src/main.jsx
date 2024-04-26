@@ -14,9 +14,9 @@ root.render(
     <Router>
       <CommentProvider>
         <RecipeProvider>
-          <UserProvider>
+          <UserProvider> 
             <App />
-          </UserProvider>
+       </UserProvider>
         </RecipeProvider>
       </CommentProvider>
     </Router>

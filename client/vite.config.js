@@ -28,8 +28,3 @@ export default defineConfig({
     proxy: proxyConfig,
   },
 });
-
-//   build: {
-//     outDir: 'build',
-//   },
-// });

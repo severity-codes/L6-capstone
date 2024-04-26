@@ -14,9 +14,9 @@ export default function App() {
 
   return (
     <div className="app">
-      {token && <Navbar logout={logout} />}
+      {localStorage.getItem("token") && <Navbar logout={logout} />}
       <Routes>
-        {token ? (
+        {localStorage.getItem("token")? (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
