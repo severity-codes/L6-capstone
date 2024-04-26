@@ -59,7 +59,7 @@ export default function UserProvider({ children }){
         const { user, token } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
-        // getpublicRecipes();
+       
         setUserState((prevUserState) => ({
           ...prevUserState,
           user,
