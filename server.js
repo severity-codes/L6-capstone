@@ -38,13 +38,23 @@ mongoose
 // Routes
 const authRouter = require("./routes/authRouter.js");
 
+const mealsRouter = require("./routes/mealsRouter.js");
+
 const commentsRouter = require("./routes/commentsRouter.js");
-const recipeRouter = require("./routes/recipeRouter.js"); // Added for recipe API integration
+
+const recipeRouter = require("./routes/recipeRouter.js"); 
+
 app.use("/auth", authRouter);
 
 app.use("/api/recipe", recipeRouter);
 app.use("/api/comment", commentsRouter);
 
+
+app.use("/api/meals", mealsRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err);
