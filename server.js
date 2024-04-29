@@ -6,13 +6,11 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 
-
 // Environment variables
 const PORT = process.env.PORT || 9080;
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/Recipes";
-
-
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/Recipes";
 
 // CORS Configuration
 const corsOptions = {
@@ -24,7 +22,7 @@ const corsOptions = {
 
 // Middlewares
 app.use(express.json());
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "client", "build")));
 
@@ -34,27 +32,16 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Error connecting to MongoDB: ", err));
 
-
 // Routes
 const authRouter = require("./routes/authRouter.js");
-
 const mealsRouter = require("./routes/mealsRouter.js");
-
 const commentsRouter = require("./routes/commentsRouter.js");
-
-const recipeRouter = require("./routes/recipeRouter.js"); 
-
+const recipeRouter = require("./routes/recipeRouter.js"); // Added for recipe API integration
 app.use("/auth", authRouter);
-
+app.use("/api/meals", mealsRouter);
 app.use("/api/recipe", recipeRouter);
 app.use("/api/comment", commentsRouter);
 
-
-app.use("/api/meals", mealsRouter);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err);

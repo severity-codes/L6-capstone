@@ -1,18 +1,17 @@
-// /routes/mealsRouter.js
 const express = require("express");
 const axios = require("axios");
-require("dotenv").config(); // It's better to load environment variables in the entry file (e.g., app.js)
+require("dotenv").config();
+
 const mealsRouter = express.Router();
 const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
 
-// Define your routes using mealsRouter
 mealsRouter.get("/search", async (req, res) => {
-  const { query } = req.query;
+  const { f: query } = req.query; // Extract the search query from the request query parameters
   try {
     const response = await axios.get(
       "https://themealdb.p.rapidapi.com/search.php",
       {
-        params: { s: query },
+        params: { s: query }, // Pass the search query to the external API
         headers: {
           "X-RapidAPI-Key": RAPIDAPI_KEY,
           "X-RapidAPI-Host": "themealdb.p.rapidapi.com",
@@ -21,7 +20,7 @@ mealsRouter.get("/search", async (req, res) => {
     );
     res.json(response.data);
   } catch (error) {
-    console.error("Error searching recipes:", error); // Consider using a more sophisticated logging mechanism for production.
+    console.error("Error searching recipes:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
