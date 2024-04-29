@@ -2,10 +2,13 @@
     "cSpell.words": [
         "expressjwt",
         "getpublic",
-        "ppic"
+        "ppic",
+        "rapidapi",
+        "themealdb"
     ],
     "emmet.excludeLanguages": [
         "xsl",
         "xslt"
-    ]
+    ],
+    "fontRandomizer.autoRefresh": "Every 3 seconds"
 }

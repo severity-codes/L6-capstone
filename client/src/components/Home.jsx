@@ -1,42 +1,63 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unescaped-entities */
-import React, { useContext } from "react";
-import RecipeForm from './RecipeForm.jsx'
-import RecipeList from './RecipeList.jsx'
-import { UserContext } from "../context/UserProvider.jsx";
-import { RecipesContext } from "../context/RecipeProvider.jsx";
-import "./home.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Home = () => {
-  const {
-    user: { username, _id },
-    token,
-  } = useContext(UserContext);
+  const [latestRecipes, setLatestRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
 
-  const { addRecipe } = useContext(RecipesContext);
-    const { deleteRecipe } = useContext(RecipesContext);
+  const fetchLatestRecipes = async () => {
+    try {
+      const response = await axios.get("/api/meals/search", {
+        params: { f: searchQuery }, // Pass the search query as a parameter
+      });
+      const data = response.data;
+      console.log("API Response:", data);
+      if (data && data.meals) {
+        setLatestRecipes(data.meals);
+      } else {
+        setLatestRecipes([]);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching latest recipes:", error);
+      setLoading(false);
+    }
+  };
 
-  // user data
-  const firstLetter = token && username ? username.charAt(0).toUpperCase() : "";
-  const usernameCased = username
-    ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()
-    : "";
+  useEffect(() => {
+    fetchLatestRecipes();
+  }, []);
 
   return (
     <div className="home">
-      <div className="post">
-        <div className="profile-pic">{firstLetter}</div>
-        <div className="post-wrapper">
-          <h3 className="recipe-question">
-            Any new recipes to post?, {usernameCased}?
-          </h3>
-          <RecipeForm addRecipe={addRecipe} />
-          <RecipeList deleteRecipe={deleteRecipe} />
-        </div>
-      </div>
-      <div className="recipes-wrapper">
-        <RecipeList userId={ _id} />
-      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetchLatestRecipes();
+        }}
+      >
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search for meals..."
+        />
+        <button type="submit">Search</button>
+      </form>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {Array.isArray(latestRecipes) &&
+            latestRecipes.map((recipe) => (
+              <li key={recipe.idMeal}>
+                <div>{recipe.strMeal}</div>
+                <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+              </li>
+            ))}
+        </ul>
+      )}
     </div>
   );
 };

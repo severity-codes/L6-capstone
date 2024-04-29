@@ -7,8 +7,6 @@ import axios from "axios";
 
 export const UserContext = React.createContext();
 
-
-
 const userAxios = axios.create();
 
 userAxios.interceptors.request.use((config) => {
@@ -17,7 +15,7 @@ userAxios.interceptors.request.use((config) => {
   return config;
 });
 
-export default function UserProvider({ children }){
+export default function UserProvider({ children }) {
   // const { getpublicRecipes } = useContext(RecipesContext);
 
   const initState = {
@@ -25,7 +23,6 @@ export default function UserProvider({ children }){
     token: localStorage.getItem("token") || "",
     recipes: [],
     errMsg: "",
-
   };
 
   const [userState, setUserState] = useState(initState);
@@ -45,7 +42,7 @@ export default function UserProvider({ children }){
           }));
         }
       })
-      
+
       .catch((err) => handleAuthErr(err.response.data.errMsg));
   }
 
@@ -55,7 +52,7 @@ export default function UserProvider({ children }){
       .post("/auth/login", credentials)
 
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         const { user, token } = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
@@ -109,9 +106,12 @@ export default function UserProvider({ children }){
         }));
       })
       .catch((err) => console.log(err));
-    
   }
-  return <UserContext.Provider value={{ ...userState, signup, login, logout, resetAuthErr, updateUser  }}>{children}</UserContext.Provider>;
-
-
+  return (
+    <UserContext.Provider
+      value={{ ...userState, signup, login, logout, resetAuthErr, updateUser }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 }

@@ -23,13 +23,7 @@ export default function RecipeProvider(props) {
 
   const [recipeState, setRecipeState] = useState(initState);
 
-  // const initPublic = {
-  //   publicRecipes: [],
-  // };
-
-  // const [publicRecipes, setPublicRecipes] = useState(initPublic);
-
-  // Adjusted addRecipe function within RecipeProvider.jsx
+  
   function addRecipe(newRecipe) {
     userAxios
       .post("/api/recipe", newRecipe)
