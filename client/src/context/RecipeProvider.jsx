@@ -37,34 +37,22 @@ export default function RecipeProvider(props) {
       .catch((err) => console.log(err));
   }
 
-  // Get user recipes
-  const getUserRecipes = async (userId) => {
-    try {
-      const response = await userAxios.get(`/api/recipe/user/:id`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setRecipeState((prevState) => ({
-        ...prevState,
-        recipes: response.data,
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // // Get public recipes
-  // const getPublicRecipes = async () => {
-  //   try {
-  //     const response = await userAxios.get("/api/recipe/");
-  //     setPublicRecipes((prevState) => ({
-  //       ...prevState,
-  //       publicRecipes: response.data,
-  //     }));
-  //   } catch (err) {
-  //     console.log(err.response.errMsg);
-  //   }
-  // };
+ const getUserRecipes = async (userId) => {
+   try {
+     const response = await userAxios.get(`/api/recipe/user/${userId}`, {
+       headers: {
+         Authorization: `Bearer ${localStorage.getItem("token")}`,
+       },
+     });
+     setRecipeState((prevState) => ({
+       ...prevState,
+       recipes: response.data,
+     }));
+   } catch (err) {
+     console.log(err);
+   }
+ };
+
 
   // Delete user recipe
   function deleteRecipe(recipeId) {

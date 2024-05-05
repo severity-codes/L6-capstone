@@ -9,7 +9,7 @@ mealsRouter.get("/details/:mealId", async (req, res) => {
   const options = {
     method: "GET",
     url: "https://themealdb.p.rapidapi.com/lookup.php",
-    params: { i: mealId },
+    params: { i: mealId }, // Use the mealId from the route parameter
     headers: {
       "X-RapidAPI-Key": RAPIDAPI_KEY,
       "X-RapidAPI-Host": "themealdb.p.rapidapi.com",
