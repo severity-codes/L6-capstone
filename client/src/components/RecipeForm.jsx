@@ -7,6 +7,8 @@ export default function RecipeForm() {
   const { addRecipe } = useContext(RecipesContext);
   const initInputs = {
     title: "",
+    ingredients: "",
+   instructions: "",
     description: "",
     imgUrl: "",
   };
@@ -27,7 +29,7 @@ function handleSubmit(e) {
   setInputs(initInputs); // Reset form
 }
 
-  const { title, description, imgUrl } = inputs;
+  const { title, description, imgUrl, instructions, ingredients } = inputs;
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
       <input
@@ -39,10 +41,24 @@ function handleSubmit(e) {
       />
       <input
         type="text"
+        name="ingredients"
+        value={ingredients}
+        onChange={handleChange}
+        placeholder="Ingredients"
+      />
+      <input
+        type="text"
         name="description"
         value={description}
         onChange={handleChange}
         placeholder="Description"
+      />
+      <input
+        type="text"
+        name="instructions"
+        value={instructions}
+        onChange={handleChange}
+        placeholder="Instructions"
       />
       <input
         type="text"
@@ -51,6 +67,7 @@ function handleSubmit(e) {
         onChange={handleChange}
         placeholder="Image Url"
       />
+
       <button>
         Add Recipe
         <i className="fa-solid fa-plus"></i>
