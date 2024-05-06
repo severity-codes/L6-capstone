@@ -6,34 +6,36 @@
     font-family: 'Roboto', sans-serif;
     outline: none;
     text-decoration: none;
+   
 }
-
-.navbar{
-    display: flex; 
+.navbar {
+    display: flex;
     justify-content: space-around;
     align-items: center;
     height: 40px;
-    background-color: #455d7a;
+    width: 100%;
+    margin: 0;
+    background-color: #43062d;
 }
 .navbar > a{
-    color: white;
+    color: rgb(231, 148, 148);
 }
 .navbar >a:hover{
-    background-color: #233142;
+    background-color: #e5268f;
     padding: 8px;
     border-radius: 5px;
 }
 
 .logout{
     width: 100px;
-    background-color: #f95959;
-    color: white;
+    background-color: #712c8f;
+    color: rgb(70, 160, 187);
     padding: 4px;
     border-radius: 10px;
     cursor: pointer; 
 }
 .logout:hover{
-    background-color: #fe3838;
+    background-color: #d4137a;
 }
 
 .auth-container{
@@ -57,10 +59,10 @@
 }
 
 .auth-container > form{
-    border: 1px solid #3338;
+    border: 1px solid rgba(139, 93, 225, 0.533);
     padding: 20px;
     border-radius: 5px;
-    background-color: #233142;
+    background-color: #7492b6;
 
     display: flex;
     flex-direction: column;
@@ -153,7 +155,7 @@
 .recipe > h1{
     color: #455d7a;
     margin-bottom: 5px;
-    color: #f93838;
+    color: #ad129b;
     font-size: 18px;
 }
 
@@ -162,12 +164,12 @@
     margin: 10px;
 }
 .upvote:hover{
-    background-color: #629832
+    background-color: #e697dc
 }
 .downvote:hover{
-    background-color:#f93838 ;
+    background-color:#a936b1 ;
 }
 
 .comments{
-    color:#396dac;
+    color:#68b095;
 }
