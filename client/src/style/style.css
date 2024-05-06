@@ -15,7 +15,7 @@
     height: 40px;
     width: 100%;
     margin: 0;
-    background-color: #e89ece;
+    background-color: #43062d;
 }
 .navbar > a{
     color: rgb(231, 148, 148);
@@ -28,14 +28,14 @@
 
 .logout{
     width: 100px;
-    background-color: #c48edc;
-    color: rgb(203, 218, 226);
+    background-color: #712c8f;
+    color: rgb(70, 160, 187);
     padding: 4px;
     border-radius: 10px;
     cursor: pointer; 
 }
 .logout:hover{
-    background-color: #f50ca3;
+    background-color: #d4137a;
 }
 
 .auth-container{
@@ -155,7 +155,7 @@
 .recipe > h1{
     color: #455d7a;
     margin-bottom: 5px;
-    color: #cb5cbe;
+    color: #ad129b;
     font-size: 18px;
 }
 
