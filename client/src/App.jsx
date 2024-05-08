@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NaveBar"
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
 import MealDetails from "./components/MealDetails";
