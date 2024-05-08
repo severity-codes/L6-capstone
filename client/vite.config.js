@@ -2,10 +2,10 @@ import { defineConfig } from "vite";
 import React from "@vitejs/plugin-react"; // Capitalized React to follow common conventions
 
 // Example target URL
-const targetURL = "http://localhost:9080";
+const targetURL = "http://localhost:10000";
 
 // Validate the target URL
-if (!targetURL.startsWith("http://localhost:9080")) {
+if (!targetURL.startsWith("http://localhost:10000")) {
   throw new Error("Proxy target does not start with 'http://localhost:9080'");
 }
 
