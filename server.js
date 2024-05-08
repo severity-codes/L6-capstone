@@ -7,7 +7,7 @@ const path = require("path");
 const cors = require("cors");
 
 // Environment variables
-const PORT = process.env.PORT || 9080;
+const PORT = process.env.PORT || 10000;
 
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost:27017/Recipes";
