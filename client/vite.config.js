@@ -6,7 +6,7 @@ const targetURL = "http://localhost:10000";
 
 // Validate the target URL
 if (!targetURL.startsWith("http://localhost:10000")) {
-  throw new Error("Proxy target does not start with 'http://localhost:9080'");
+  throw new Error("Proxy target does not start with 'http://localhost:10000'");
 }
 
 // Define the proxy configuration using the validated targetURL
