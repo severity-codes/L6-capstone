@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 import Auth from "./components/Auth";
 import Profile from "./components/Profile";
 
@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <div className="app">
-      {localStorage.getItem("token") && <Navbar logout={logout} />}
+      {localStorage.getItem("token") && <NavBar logout={logout} />}
       <Routes>
         {localStorage.getItem("token")? (
           <>

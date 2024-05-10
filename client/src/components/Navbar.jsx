@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"; //
 import { Link } from "react-router-dom";
 
-function Navbar({ logout }) {
+function NavBar({ logout }) {
   return (
     <nav className="navbar">
       <Link to="/">Home</Link>
@@ -18,4 +18,4 @@ Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-export default Navbar;
+export default NavBar;
